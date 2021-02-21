@@ -23,7 +23,14 @@ logger = getLogger(__name__)
 
 
 def get_parser() -> argparse.ArgumentParser:
-    parser = argparse.ArgumentParser(description='Tools for online judge services')
+    parser = argparse.ArgumentParser(
+        description='Tools for online judge services',
+        formatter_class=argparse.RawTextHelpFormatter,
+        epilog='''\
+tips:
+  The official tutorial exists on the web: https://github.com/online-judge-tools/oj/blob/master/docs/getting-started.md
+''',
+    )
     parser.add_argument('-v', '--verbose', action='store_true')
     parser.add_argument('-c', '--cookie', type=pathlib.Path, default=utils.default_cookie_path, help='path to cookie. (default: {})'.format(utils.default_cookie_path))
     parser.add_argument('--version', action='store_true', help='print the online-judge-tools version number')
@@ -134,7 +141,7 @@ format string for --format:
   (both %s and %e are required.)
 
 tips:
-  There is a feature to use special judges. See https://online-judge-tools.readthedocs.io/en/master/introduction.en.html#test-for-problems-with-special-judge for details.
+  There is a feature to use special judges. See https://github.com/online-judge-tools/oj/blob/master/docs/getting-started.md#test-for-problems-with-special-judge for details.
 
   You can do similar things with shell
     e.g. $ for f in test/*.in ; do echo $f ; ./a.out < $f | diff - ${f%.in}.out ; done
@@ -190,6 +197,8 @@ format string for --format:
   (both %d and %e are required.)
 
 tips:
+  For the random testing, you can read a tutorial: https://github.com/online-judge-tools/oj/blob/master/docs/getting-started.md#random-testing
+
   There is a command to automatically generate a input generator, `oj-template` command. See https://github.com/online-judge-tools/template-generator .
 
   This subcommand has also the feature to find a hack case.
